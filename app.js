@@ -1,6 +1,7 @@
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
+var fs = require("fs");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var passport = require("passport");
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(__dirname + "/node_modules/bootstrap/dist"));
 app.use(express.static(__dirname + "/node_modules/jquery/dist/"));
 
+// setup passport authentication
 app.use(
   session({
     secret: "keyboard cat",
@@ -38,6 +40,10 @@ app.use(
 );
 app.use(passport.authenticate("session"));
 
+// clear stored memes on server restart
+fs.writeFileSync(path.resolve(__dirname, "./data/memes.json"), "[]");
+
+// setup routers
 app.use("/", indexRouter);
 app.use("/memes", memesRouter);
 app.use("/meme", memeRouter);

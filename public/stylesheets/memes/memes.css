@@ -1,0 +1,26 @@
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table img {
+  transform: scale(0.2);
+  transform-origin: top left;
+  display: block;
+}
+
+table {
+  width: 100%;
+  /* table-layout: fixed; */
+}
+
+td {
+  padding: 5px; /* Adjust padding to reduce empty space */
+  text-align: center; /* Center the content */
+}
+
+td,
+th {
+  text-align: center; /* Center the text for a cleaner look */
+  vertical-align: middle; /* Vertically align content to the middle */
+}

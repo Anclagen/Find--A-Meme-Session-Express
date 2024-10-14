@@ -2,32 +2,45 @@
 <html lang="en">
   <head>
     <title>Memes Overview</title>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
-    <link href="../../stylesheets/navbar.css" rel="stylesheet" />
+    <%- include('./partials/head.ejs') %>
+
+    <link href="../../stylesheets/memes/memes.css" rel="stylesheet" />
   </head>
 
   <body class="position-relative" data-bs-spy="scroll">
     <%- include('./partials/navbar.ejs') %>
-    <section class="container">
-      <table class="table" id="table">
+    <section class="container-xl">
+      <table class="table table-striped table-bordered" id="table">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Size</th>
             <th scope="col">Image</th>
-            <th scope="col">Options</th>
+            <th scope="col">Name</th>
+            <th scope="col">Details</th>
           </tr>
         </thead>
         <tbody>
+          <% memes.forEach(function(meme){ %>
           <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><img src="<%=meme.url%>" onload="onLoadImage(this)" alt="<%=meme.name%>" /></td>
+            <td><%=meme.name%></td>
+            <td><a href="<%="/meme?" +meme.id%>">Details</a></td>
           </tr>
+          <% }); %>
         </tbody>
       </table>
     </section>
     <%- include('./partials/scripts.ejs') %>
+    <script>
+      // transform scale keeps original height/width in table
+      function onLoadImage(img) {
+        img.dataset.originalWidth = img.naturalWidth;
+        img.dataset.originalHeight = img.naturalHeight;
+        const newWidth = img.naturalWidth * 0.2;
+        const newHeight = img.naturalHeight * 0.2;
+        img.style.width = newWidth + 'px';
+        img.style.height = newHeight + 'px';
+        img.style.transform = "none";
+      }
+    </script>
   </body>
 </html>
