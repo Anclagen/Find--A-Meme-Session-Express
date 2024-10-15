@@ -1,8 +1,18 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  background-image: url("/images/meme-cats.png");
+  background-position: center;
+  background-color: #90d2e1;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+.rainbow {
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: -2px 2px #ef3550, -4px 4px #f48fb1, -6px 6px #7e57c2, -8px 8px #2196f3, -10px 10px #26c6da, -12px 12px #43a047, -14px 14px #eeff41, -16px 16px #f9a825, -18px 18px #ff5722;
 }

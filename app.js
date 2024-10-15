@@ -29,11 +29,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(__dirname + "/node_modules/bootstrap/dist"));
 app.use(express.static(__dirname + "/node_modules/jquery/dist/"));
+app.use(express.static(__dirname + "/node_modules/bootstrap-icons"));
 
 // setup passport authentication
 app.use(
   session({
-    secret: "keyboard cat",
+    secret: process.env.PASSPORT_SECRET || "Secret",
     resave: false,
     saveUninitialized: false,
     store: new JsonStore(),
