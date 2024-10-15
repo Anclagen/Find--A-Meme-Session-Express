@@ -19,11 +19,14 @@ router.get("/", async function (req, res, next) {
   res.render("memes", { memes });
 });
 
-router.post("/:query", function (req, res, next) {
+router.post("/", function (req, res, next) {
   const memes = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../data/memes.json")));
-  const query = req.params("query");
-  const searchResults = memes.filter((meme) => meme.name.includes(query));
-  res.send(JSON.stringify(searchResults));
+  const query = req.query.query;
+  let searchResults = memes;
+  if (query) {
+    searchResults = memes.filter((meme) => meme.name.toLowerCase().includes(query.toLowerCase()));
+  }
+  res.json(searchResults);
 });
 
 module.exports = router;

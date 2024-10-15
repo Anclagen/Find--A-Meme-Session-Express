@@ -2,14 +2,20 @@
 <html lang="en">
   <head>
     <title>Memes Overview</title>
+    <!-- common css imports -->
     <%- include('./partials/head.ejs') %>
-
+    <!-- Page specifics -->
     <link href="../../stylesheets/memes/memes.css" rel="stylesheet" />
   </head>
 
   <body class="position-relative" data-bs-spy="scroll">
     <%- include('./partials/navbar.ejs') %>
     <section class="container-xl">
+      <form id="searchMemes">
+        <input type="text" id="searchInput">
+        <button type="submit">Search</button>
+        <button type="reset" id="clearInput">Clear</button>
+      </form>
       <table class="table table-striped table-bordered" id="table">
         <thead>
           <tr>
@@ -21,26 +27,17 @@
         <tbody>
           <% memes.forEach(function(meme){ %>
           <tr>
-            <td><img src="<%=meme.url%>" onload="onLoadImage(this)" alt="<%=meme.name%>" /></td>
+            <td><img src="<%=meme.url%>" width="<%=meme.width * 0.2%>px" width="<%=meme.height * 0.2%>px" alt="<%=meme.name%>" /></td>
             <td><%=meme.name%></td>
-            <td><a href="<%="/meme?" +meme.id%>">Details</a></td>
+            <td><a href="<%="/meme/" +meme.id%>">Details</a></td>
           </tr>
           <% }); %>
         </tbody>
       </table>
     </section>
+    <!-- Common scripts -->
     <%- include('./partials/scripts.ejs') %>
-    <script>
-      // transform scale keeps original height/width in table
-      function onLoadImage(img) {
-        img.dataset.originalWidth = img.naturalWidth;
-        img.dataset.originalHeight = img.naturalHeight;
-        const newWidth = img.naturalWidth * 0.2;
-        const newHeight = img.naturalHeight * 0.2;
-        img.style.width = newWidth + 'px';
-        img.style.height = newHeight + 'px';
-        img.style.transform = "none";
-      }
-    </script>
+    <!--Search handler -->
+    <script src="/js/memes/search.js"></script>
   </body>
 </html>
