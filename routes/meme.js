@@ -7,7 +7,7 @@ router.get("/:id", function (req, res, next) {
   const id = req.params.id;
   const memes = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../data/memes.json")));
   let meme = memes.filter((meme) => id === meme.id);
-  res.render(`meme`, meme);
+  res.render(`meme`, { meme });
 });
 
 module.exports = router;

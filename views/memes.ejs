@@ -33,7 +33,7 @@
         <tbody>
           <% memes.forEach(function(meme){ %>
           <tr>
-            <td><img src="<%=meme.url%>" width="<%=meme.width * 0.2%>px" width="<%=meme.height * 0.2%>px" alt="<%=meme.name%>" /></td>
+            <td><img src="<%=meme.url%>" width="<%=meme.width * 0.2%>px" width="<%=meme.height * 0.2%>px" class="shadow" alt="<%=meme.name%>" /></td>
             <td><%=meme.name%></td>
             <td><a href="<%="/meme/" +meme.id%>" class="p-1 px-2 btn btn-info text-white shadow" >Details <i class="bi bi-arrow-right-circle-fill"></i></a></td>
           </tr>
