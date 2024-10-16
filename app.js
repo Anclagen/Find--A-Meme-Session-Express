@@ -45,6 +45,16 @@ app.use(passport.authenticate("session"));
 // clear stored memes on server restart
 fs.writeFileSync(path.resolve(__dirname, "./data/memes.json"), "[]");
 
+// Check user is logged in, applies user to locals for renders.
+app.use(function (req, res, next) {
+  if (req.isAuthenticated()) {
+    res.locals.user = req.session.passport.user;
+  } else {
+    res.locals.user = null;
+  }
+  next();
+});
+
 // setup routers
 app.use("/", indexRouter);
 app.use("/memes", memesRouter);
