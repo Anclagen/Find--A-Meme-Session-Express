@@ -23,7 +23,7 @@ router.post("/", function (req, res, next) {
   if (query) {
     searchResults = memes.filter((meme) => meme.name.toLowerCase().includes(query.toLowerCase()));
   }
-  res.json(searchResults);
+  res.json({ data: searchResults, isLoggedIn: req.isAuthenticated() });
 });
 
 module.exports = router;
