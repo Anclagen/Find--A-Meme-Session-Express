@@ -34,12 +34,14 @@
         </thead>
         <tbody>
           <% memes.forEach(function(meme){ %>
-          <tr>
+          <tr class="<% if (visited.includes(Number(meme.id))) { %>visited<% }%>">
             <td><img src="<%=meme.url%>" width="<%=meme.width * 0.2%>px" width="<%=meme.height * 0.2%>px" class="shadow" alt="<%=meme.name%>" /></td>
             <td><%=meme.name%></td>
             <% if (user) { %>
             <td>
-              <button class="p-1 px-2 btn btn-info text-white shadow details-btn" data-id="<%=meme.id%>">Details <i class="bi bi-arrow-right-circle-fill"></i></button>
+              <button class="p-1 px-2 btn btn-info text-white shadow details-btn <% if (visited.includes(Number(meme.id))) { %>visited<% }%>" data-id="<%=meme.id%>">
+                Details <i class="bi bi-arrow-right-circle-fill"></i>
+              </button>
             </td>
             <% } %>
           </tr>

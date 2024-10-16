@@ -18,16 +18,29 @@
 
 table {
   width: 100%;
-  /* table-layout: fixed; */
 }
 
 td {
-  padding: 5px; /* Adjust padding to reduce empty space */
-  text-align: center; /* Center the content */
+  padding: 5px;
+  text-align: center;
 }
 
 td,
 th {
-  text-align: center; /* Center the text for a cleaner look */
-  vertical-align: middle; /* Vertically align content to the middle */
+  text-align: center;
+  vertical-align: middle;
+}
+
+.visited td {
+  background-color: rgb(217, 202, 234);
+}
+
+.visited button {
+  background-color: blueviolet;
+  border-color: purple;
+}
+
+.visited button:hover {
+  background-color: rgb(113, 25, 195);
+  border-color: rgb(96, 0, 128);
 }

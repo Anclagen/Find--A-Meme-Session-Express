@@ -13,7 +13,8 @@ router.get("/", async function (req, res, next) {
     fs.writeFileSync(path.resolve(__dirname, "../data/memes.json"), JSON.stringify(memes));
   }
 
-  res.render("memes", { memes });
+  const visited = req.session.viewedMemes || [];
+  res.render("memes", { memes, visited });
 });
 
 router.post("/", function (req, res, next) {
@@ -23,7 +24,8 @@ router.post("/", function (req, res, next) {
   if (query) {
     searchResults = memes.filter((meme) => meme.name.toLowerCase().includes(query.toLowerCase()));
   }
-  res.json({ data: searchResults, isLoggedIn: req.isAuthenticated() });
+  const visited = req.session.viewedMemes || [];
+  res.json({ data: searchResults, isLoggedIn: req.isAuthenticated(), visited });
 });
 
 module.exports = router;
