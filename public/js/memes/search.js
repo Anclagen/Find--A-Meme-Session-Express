@@ -15,19 +15,20 @@ function createTableRow(meme, isLoggedIn) {
   if (isLoggedIn) {
     const detailsCol = $("<td></td>");
     detailsCol.appendTo(tableRow);
-    const link = $("<a></a>");
-    link.attr("href", `/meme/${meme.id}`);
-    link.text("Details");
-    link.appendTo(detailsCol);
+    const btn = $("<button></button>");
+    btn.addClass("p-1 px-2 btn btn-info text-white shadow details-btn");
+    btn.attr("data-id", meme.id);
+    btn.html(`Details <i class="bi bi-arrow-right-circle-fill"></i>`);
+    btn.appendTo(detailsCol);
   }
   return tableRow;
 }
 
-function updateResults(results) {
+function updateResults(results, isLoggedIn) {
   const tableBody = $("tbody");
   tableBody.empty();
   results.forEach((meme) => {
-    const tableRow = createTableRow(meme);
+    const tableRow = createTableRow(meme, isLoggedIn);
     tableBody.append(tableRow);
   });
 }
@@ -38,12 +39,14 @@ $("#searchMemes").on("submit", async (event) => {
   const raw = await fetch(`memes?query=${query}`, { method: "POST" });
   const results = await raw.json();
   updateResults(results.data, results.isLoggedIn);
+  $(".details-btn").on("click", handler);
 });
 
 $("#clearInput").on("click", async () => {
   const raw = await fetch(`memes?query=`, { method: "POST" });
   const results = await raw.json();
   updateResults(results.data, results.isLoggedIn);
+  $(".details-btn").on("click", handler);
 });
 
 $("#searchInput").on("input", async () => {
@@ -51,5 +54,6 @@ $("#searchInput").on("input", async () => {
     const raw = await fetch(`memes?query=`, { method: "POST" });
     const results = await raw.json();
     updateResults(results.data, results.isLoggedIn);
+    $(".details-btn").on("click", handler);
   }
 });

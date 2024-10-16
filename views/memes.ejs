@@ -13,12 +13,12 @@
     <section class="container-xl bg-secondary-subtle px-5 pb-5">
       <form id="searchMemes" class="p-2 py-5 rounded my-4 text-center shadow">
         <div class="p-3 search-container w-75 mx-auto rounded">
-        <label for="searchInput" class="rainbow form-label fw-semibold fs-3 mb-4">Find A Meme</label>
-        <input type="text" id="searchInput" class="form-control lg:w-50 mx-auto fs-2">
-        <div class="mt-2">
-          <button type="submit" class="btn-primary btn mx-2">Search</button>
-        <button type="reset" id="clearInput" class="btn-danger btn mx-2">Clear</button>
-        </div>
+          <label for="searchInput" class="rainbow form-label fw-semibold fs-3 mb-4">Find A Meme</label>
+          <input type="text" id="searchInput" class="form-control lg:w-50 mx-auto fs-2" />
+          <div class="mt-2">
+            <button type="submit" class="btn-primary btn mx-2">Search</button>
+            <button type="reset" id="clearInput" class="btn-danger btn mx-2">Clear</button>
+          </div>
         </div>
       </form>
       <h1 for="searchInput" class="rainbow form-label fw-semibold fs-1 mb-4 text-center">Memes</h1>
@@ -38,7 +38,9 @@
             <td><img src="<%=meme.url%>" width="<%=meme.width * 0.2%>px" width="<%=meme.height * 0.2%>px" class="shadow" alt="<%=meme.name%>" /></td>
             <td><%=meme.name%></td>
             <% if (user) { %>
-            <td><a href="<%="/meme/" +meme.id%>" class="p-1 px-2 btn btn-info text-white shadow" >Details <i class="bi bi-arrow-right-circle-fill"></i></a></td>
+            <td>
+              <button class="p-1 px-2 btn btn-info text-white shadow details-btn" data-id="<%=meme.id%>">Details <i class="bi bi-arrow-right-circle-fill"></i></button>
+            </td>
             <% } %>
           </tr>
           <% }); %>
@@ -48,6 +50,7 @@
     <!-- Common scripts -->
     <%- include('./partials/scripts.ejs') %>
     <!--Search handler -->
+    <script src="/js/memes/details.js"></script>
     <script src="/js/memes/search.js"></script>
   </body>
 </html>
