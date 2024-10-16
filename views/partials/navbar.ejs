@@ -20,16 +20,21 @@
         <li class="nav-item">
           <a class="nav-link" href="/memes">Memes</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/login">Sign in</a>
-        </li>
         <% if (user) { %>
         <li class="nav-item">
-          <span class="nav-link"><%=user.username%></span>
+          <form action="/login/logout" method="get">
+            <button class="logout nav-link" type="submit">Sign out</button>
+          </form>
+        </li>
+        <li class="nav-item">
+          <span class="current-user nav-link"><%=user.username%></span>
         </li>
         <% } else { %>
         <li class="nav-item">
-          <span class="nav-link">Guest</span>
+          <a class="nav-link" href="/login">Sign in</a>
+        </li>
+        <li class="nav-item">
+          <span class="current-user nav-link">Guest</span>
         </li>
         <% } %>
       </ul>
