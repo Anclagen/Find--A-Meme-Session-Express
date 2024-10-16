@@ -9,8 +9,24 @@
 
   <body class="position-relative" data-bs-spy="scroll">
     <%- include('./partials/navbar.ejs') %>
-    <section class="container-xl bg-secondary-subtle px-5 pb-5"></section>
-
+    <section class="container-xl bg-secondary-subtle px-5 pb-5">
+      <% if(meme) { %>
+      <div>
+        <img src="<%=meme[0].url%>" atl="<%=meme[0].name%>" class="meme-img" />
+      </div>
+      <div>
+        <h1><%=meme[0].name%></h1>
+        <p class="my-1">Dimensions:</p>
+        <ul class="my-1">
+          <li>Width: <%=meme[0].width%>px</li>
+          <li>Height: <%=meme[0].height%>px</li>
+        </ul>
+      </div>
+      <% } else {%>
+      <h1>Ooops!, we can't find that meme.</h1>
+      <a href="/memes">Back to memes</a>
+      <% } %>
+    </section>
     <%- include('./partials/scripts.ejs') %>
   </body>
 </html>
