@@ -7,6 +7,7 @@ var logger = require("morgan");
 var passport = require("passport");
 var session = require("express-session");
 var JsonStore = require("express-session-json")(session);
+const axios = require("axios");
 
 //routes
 var indexRouter = require("./routes/index");
@@ -31,6 +32,23 @@ app.use(express.static(__dirname + "/node_modules/bootstrap/dist"));
 app.use(express.static(__dirname + "/node_modules/jquery/dist/"));
 app.use(express.static(__dirname + "/node_modules/bootstrap-icons"));
 
+let memesData = [];
+// Function to fetch memes assign to locals for usage
+async function fetchMemes() {
+  try {
+    const response = await axios.get(process.env.URL);
+    memesData = response.data;
+    // storing in locals for later usage
+    app.locals.memesData = memesData.memes;
+    console.log("Memes fetched successfully!");
+  } catch (error) {
+    console.error("Error fetching memes:", error);
+  }
+}
+
+// Fetch memes when the server starts assign to local for use in routes
+fetchMemes();
+
 // setup passport authentication
 app.use(
   session({
@@ -41,9 +59,6 @@ app.use(
   })
 );
 app.use(passport.authenticate("session"));
-
-// clear stored memes on server restart
-fs.writeFileSync(path.resolve(__dirname, "./data/memes.json"), "[]");
 
 // Check user is logged in, applies user to locals for renders.
 app.use(function (req, res, next) {

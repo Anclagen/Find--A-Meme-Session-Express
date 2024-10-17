@@ -8,7 +8,7 @@ router.get("/:id", function (req, res, next) {
     res.redirect("/login");
   }
   const id = req.params.id;
-  const memes = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../data/memes.json")));
+  const memes = req.app.locals.memesData;
   const meme = memes.filter((meme) => id == meme.id);
   res.render(`meme`, { meme });
 });
