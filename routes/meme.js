@@ -10,7 +10,7 @@ router.get("/:id", function (req, res, next) {
   const id = req.params.id;
   const memes = req.app.locals.memesData;
   const meme = memes.filter((meme) => id == meme.id);
-  res.render(`meme`, { meme });
+  res.render(`meme`, { meme: meme[0] });
 });
 
 router.post("/:id", function (req, res, next) {
@@ -25,7 +25,6 @@ router.post("/:id", function (req, res, next) {
       req.session.viewedMemes.push(id);
     }
   }
-  console.log(req.session.viewedMemes);
   res.status(201).json({ message: "Success" });
 });
 

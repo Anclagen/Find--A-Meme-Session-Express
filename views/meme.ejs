@@ -2,29 +2,53 @@
 <html lang="en">
   <head>
     <title>Meme Info</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link href="../stylesheets/navbar.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../stylesheets/meme.css" />
+    <%- include('./partials/head.ejs') %>
+    <link rel="stylesheet" href="../stylesheets/meme/meme.css" />
   </head>
 
   <body class="position-relative" data-bs-spy="scroll">
     <%- include('./partials/navbar.ejs') %>
-    <section class="container-xl bg-secondary-subtle px-5 pb-5">
+    <section class="bg-secondary-subtle px-2 pb-5">
       <% if(meme) { %>
-      <div>
-        <img src="<%=meme[0].url%>" atl="<%=meme[0].name%>" class="meme-img" />
+      <h1 class="text-center mb-5"><%=meme.name%></h1>
+      <div class="img-container-outer mx-auto shadow">
+        <div class="img-container rounded">
+          <img src="<%=meme.url%>" atl="<%=meme.name%>" class="meme-img" />
+        </div>
       </div>
-      <div>
-        <h1><%=meme[0].name%></h1>
-        <p class="my-1">Dimensions:</p>
-        <ul class="my-1">
-          <li>Width: <%=meme[0].width%>px</li>
-          <li>Height: <%=meme[0].height%>px</li>
-        </ul>
+      <div class="px-2 mt-5">
+        <table class="table table-striped table-bordered my-1">
+          <tbody>
+            <tr>
+              <th scope="row">ID</th>
+              <td><%=meme.id%></td>
+            </tr>
+            <tr>
+              <th scope="row">Name</th>
+              <td><%=meme.name%></td>
+            </tr>
+            <tr>
+              <th scope="row">Image URL</th>
+              <td><a href="<%=meme.url%>" target="_blank"><%=meme.url%></a></td>
+            </tr>
+            <tr>
+              <th scope="row">Dimensions</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th scope="row">Width</th>
+              <td><%=meme.width%>px</td>
+            </tr>
+            <tr>
+              <th scope="row">Height</th>
+              <td><%=meme.height%>px</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <% } else {%>
       <h1>Ooops!, we can't find that meme.</h1>
-      <a href="/memes">Back to memes</a>
+      <a href="/memes" class="p-1 px-2 btn btn-info text-white shadow">Back to memes <i class="bi bi-arrow-right-circle-fill"></i></a>
       <% } %>
     </section>
     <%- include('./partials/scripts.ejs') %>
