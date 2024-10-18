@@ -38,12 +38,9 @@ passport.deserializeUser((user, callback) => {
 router.post(
   "/password",
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/memes",
     failureRedirect: "/login",
-  }),
-  (req, res) => {
-    res.redirect("/memes");
-  }
+  })
 );
 
 router.get("/logout", function (req, res, next) {
