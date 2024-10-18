@@ -9,19 +9,26 @@ router.get("/", async function (req, res, next) {
   // Get stored memes object
   const memes = req.app.locals.memesData;
   const visited = req.session.viewedMemes || [];
-  res.render("memes", { memes, visited });
+  res.render("memes", { memes, visited, query: "" });
 });
 
 router.post("/", function (req, res, next) {
   // Get stored memes object
   const memes = req.app.locals.memesData;
-  const query = req.query.query;
+  let query = req.body.searchInput;
+  const action = req.body.action;
   let searchResults = memes;
+
+  if (action === "clear") {
+    query = "";
+  }
+
   if (query) {
     searchResults = memes.filter((meme) => meme.name.toLowerCase().includes(query.toLowerCase()));
   }
+
   const visited = req.session.viewedMemes || [];
-  res.json({ data: searchResults, isLoggedIn: req.isAuthenticated(), visited });
+  res.render("memes", { memes: searchResults, visited, query });
 });
 
 module.exports = router;

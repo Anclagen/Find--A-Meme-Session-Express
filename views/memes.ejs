@@ -11,13 +11,13 @@
   <body class="position-relative" data-bs-spy="scroll">
     <%- include('./partials/navbar.ejs') %>
     <section class="container-xl bg-secondary-subtle px-5 pb-5">
-      <form id="searchMemes" class="p-2 py-5 rounded my-4 text-center shadow">
+      <form id="searchMemes" class="p-2 py-5 rounded my-4 text-center shadow" action="/memes" method="POST">
         <div class="p-3 search-container w-75 mx-auto rounded">
           <label for="searchInput" class="rainbow form-label fw-semibold fs-3 mb-4">Find A Meme</label>
-          <input type="text" id="searchInput" class="form-control lg:w-50 mx-auto fs-2" />
+          <input type="text" id="searchInput" name="searchInput" class="form-control lg:w-50 mx-auto fs-2" value="<%=query%>" />
           <div class="mt-2">
-            <button type="submit" class="btn-primary btn mx-2">Search</button>
-            <button type="reset" id="clearInput" class="btn-danger btn mx-2">Clear</button>
+            <button type="submit" name="action" class="btn-primary btn mx-2" value="search">Search</button>
+            <button type="submit" name="action" id="clearInput" class="btn-danger btn mx-2" value="clear">Clear</button>
           </div>
         </div>
       </form>
@@ -53,6 +53,5 @@
     <%- include('./partials/scripts.ejs') %>
     <!--Search handler -->
     <script src="/js/memes/details.js"></script>
-    <script src="/js/memes/search.js"></script>
   </body>
 </html>
