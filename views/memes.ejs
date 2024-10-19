@@ -40,7 +40,7 @@
               <td><%=meme.name%></td>
               <% if (user) { %>
               <td>
-                <button class="p-1 px-2 btn btn-info text-white shadow details-btn <% if (visited.includes(Number(meme.id))) { %>visited<% }%>" data-id="<%=meme.id%>">
+                <button class="p-1 px-2 btn btn-primary text-white shadow details-btn <% if (visited.includes(Number(meme.id))) { %>visited<% }%>" data-id="<%=meme.id%>">
                   Details <i class="bi bi-arrow-right-circle-fill"></i>
                 </button>
               </td>

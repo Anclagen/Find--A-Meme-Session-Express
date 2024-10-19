@@ -5,3 +5,20 @@ section {
 .logo {
   max-width: 50px;
 }
+
+.nav-link {
+  color: #00486c;
+  font-weight: 600;
+}
+
+.current-user {
+  color: rgb(78, 78, 78);
+}
+
+.current-user.logged-in {
+  color: rgb(16, 123, 21);
+}
+.nav-item.border-right {
+  border-right: 1px solid #292929;
+  padding-right: 10px;
+}
