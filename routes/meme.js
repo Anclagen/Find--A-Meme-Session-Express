@@ -5,7 +5,7 @@ var path = require("path");
 
 router.get("/:id", function (req, res, next) {
   if (!req.isAuthenticated()) {
-    res.redirect("/login");
+    return res.redirect("/login");
   }
   const id = req.params.id;
   const memes = req.app.locals.memesData;
