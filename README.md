@@ -9,8 +9,8 @@ This meme-sharing application is built using Node.js and Express. It allows user
 1. Clone the repository
 
    ```bash
-   git clone https://github.com/noroff-backend-1/mar24ft-jss-ca-1-Anclagen.git
-   cd mar24ft-jss-ca-1-Anclagen
+   git clone https://github.com/Anclagen/Find--A-Meme-Session-Express.git
+   cd Find--A-Meme-Session-Express
    ```
 
 2. Install the dependencies
