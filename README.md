@@ -1,6 +1,4 @@
-# Noroff: Back-end Development Year 1
-
-## JavaScript Server - Course Assignment 1 <sup>V2</sup>
+# Find A Meme
 
 ![meme page image](./readme-img.jpg)
 
